@@ -4,11 +4,21 @@ import { Form, Icon, Input, Button, Checkbox, Row } from "antd";
 const FormItem = Form.Item;
 
 class NormalLoginForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      user: this.props
+    };
+  }
   handleSubmit = e => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log("Received values of form: ", values);
+
+        this.props.login(values);
+
+        console.log(this.state.user);
       }
     });
   };

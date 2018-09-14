@@ -1,12 +1,14 @@
 import React from "react";
-import Login from "./Login";
-import Dashboard from "./Dashboard";
+import { Switch, Route } from "react-router-dom";
+import HomePage from "./HomePage";
 
 export default class SocialApp extends React.Component {
   render() {
     return (
       <div>
-        <Dashboard />
+        <Switch>
+          <Route exact path="/" component={HomePage} />
+        </Switch>
       </div>
     );
   }
