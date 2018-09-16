@@ -1,5 +1,7 @@
 import React from "react";
 import { Form, Icon, Input, Button, Checkbox, Row } from "antd";
+import { authRef, db } from "../config/firebase";
+import ColumnGroup from "../../node_modules/antd/lib/table/ColumnGroup";
 
 const FormItem = Form.Item;
 
@@ -16,7 +18,30 @@ class NormalLoginForm extends React.Component {
       if (!err) {
         console.log("Received values of form: ", values);
 
-        this.props.login(values);
+        // this.props.login(values);
+        authRef
+          .signInWithEmailAndPassword(values.userName, values.password)
+          .then(user => {
+            console.log("user:" + user);
+            console.log(authRef.currentUser.email);
+            db.collection("books")
+              .get()
+              .then(snapshot => {
+                snapshot.forEach(doc => {
+                  console.log(doc.id, "=>", doc.data().name);
+                });
+              })
+              .catch(error => {
+                console.log(error);
+              });
+          })
+          .catch(function(error) {
+            // Handle Errors here.
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            console.log(errorCode + errorMessage);
+            // ...
+          });
 
         console.log(this.state.user);
       }
