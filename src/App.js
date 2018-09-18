@@ -6,15 +6,11 @@ import { BrowserRouter, Route } from "react-router-dom";
 import SocialApp from "./components/SocialApp";
 import ToDoList from "./components/ToDoList";
 import { connect } from "react-redux";
-import { fetchUser } from "./actions";
 import SignIn from "./components/SignIn";
 import requireAuth from "./components/auth/requireAuth";
 import Login from "./components/Login";
 
 class App extends Component {
-  componentWillMount() {
-    fetchUser();
-  }
   render() {
     return (
       <div className="App">
