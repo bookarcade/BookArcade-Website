@@ -3,7 +3,7 @@ import { FETCH_BUY } from "./types";
 import { FETCH_RENT } from "./types";
 import { FETCH_PACKAGE } from "./types";
 import { FETCH_RETURN } from "./types";
-import { FETCH_USER } from "./types";
+import { fetchUser, userLogout, userLogin } from "./users";
 
 // export const addBook = newBook => async dispatch => {
 //   booksRef.add(newBook);
@@ -26,16 +26,18 @@ import { FETCH_USER } from "./types";
 //     });
 //   });
 // };
-export const fetchBuy = () => async dispatch => {
+const fetchBuy = () => async dispatch => {
   buyRef.get().then(querySnapshot => {
     querySnapshot.forEach(doc => {
       // doc.data() is never undefined for query doc snapshots
-      let docData = doc.data();
-      docData.doc_id = doc.id;
+      // let docData = doc.data();
+      // docData.doc_id = doc.id;
       dispatch({
         type: FETCH_BUY,
-        payload: docData
+        payload: doc.data()
       });
     });
   });
 };
+
+export { fetchUser, fetchBuy, userLogout, userLogin };

@@ -1,0 +1,34 @@
+import { FETCH_USER } from "./types";
+import { authRef } from "../config/firebase";
+
+export const fetchUser = () => async dispatch => {
+  console.log("Fetch Executed");
+  authRef.onAuthStateChanged(user => {
+    dispatch({
+      type: FETCH_USER,
+      payload: user
+    });
+  });
+};
+
+export const userLogout = () => async dispatch => {
+  authRef.signOut().then(() => {
+    fetchUser();
+  });
+};
+
+export const userLogin = (email, password) => async dispatch => {
+  console.log("Login Function");
+  authRef
+    .signInWithEmailAndPassword(email, password)
+    .then(user => {
+      console.log("Signed In");
+      dispatch({
+        type: FETCH_USER,
+        payload: user
+      });
+    })
+    .catch(error => {
+      console.log(error.code + " " + error.message);
+    });
+};

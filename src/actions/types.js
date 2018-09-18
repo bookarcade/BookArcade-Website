@@ -3,3 +3,4 @@ export const FETCH_RENT = "FETCH_RENT";
 export const FETCH_RETURN = "FETCH_RETURN";
 export const FETCH_PACKAGE = "FETCH_PACKAGE";
 export const FETCH_USER = "FETCH_USER";
+export const USER_LOGIN = "USER_LOGIN";

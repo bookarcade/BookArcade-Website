@@ -1,11 +1,28 @@
 import React, { Component } from "react";
 import { Layout, Menu, Breadcrumb, Icon } from "antd";
+import * as actions from "../actions";
+import { connect } from "react-redux";
+import { Redirect } from "react-router-dom";
 
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
 
 class Dashboard extends Component {
+  componentWillMount() {
+    const { fetchUser } = this.props;
+    fetchUser();
+  }
+  componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
+  }
+  handleClick = () => {
+    const { fetchBuy, userLogout } = this.props;
+    fetchBuy();
+    userLogout();
+  };
   render() {
+    const { data } = this.props;
+    if (this.props.auth.user === null) return <Redirect to="/login" />;
     return (
       <Layout>
         <Header style={{ position: "fixed", zIndex: 1, width: "100%" }}>
@@ -91,7 +108,13 @@ class Dashboard extends Component {
               </Menu>
             </Sider>
             <Content style={{ padding: "0 24px", minHeight: 280 }}>
-              Content
+              <div className="container">
+                This is the content from the database
+                {data.hola ? "hola" : "Hey"}
+                <div>
+                  <button onClick={this.handleClick}>Hey</button>
+                </div>
+              </div>
             </Content>
           </Layout>
         </Content>
@@ -103,4 +126,14 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+const mapStateToProps = ({ data, auth }, ownProps) => {
+  return {
+    data,
+    auth
+  };
+};
+
+export default connect(
+  mapStateToProps,
+  actions
+)(Dashboard);
