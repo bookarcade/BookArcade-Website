@@ -7,6 +7,7 @@ import ToDoList from "./components/ToDoList";
 import requireAuth from "./components/auth/requireAuth";
 import Login from "./components/Login";
 import Dashboard from "./components/Dashboard";
+import HomePage from "./components/HomePage";
 
 class App extends Component {
   render() {
@@ -14,7 +15,7 @@ class App extends Component {
       <div className="App">
         <BrowserRouter>
           <div className="container">
-            <Route exact path="/" component={Dashboard} />
+            <Route exact path="/" component={HomePage} />
             <Route path="/login" component={Login} />
           </div>
         </BrowserRouter>
