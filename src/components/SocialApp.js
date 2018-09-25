@@ -9,6 +9,7 @@ export default class SocialApp extends React.Component {
       <div>
         <Switch>
           <Route exact path="/" component={Dashboard} />
+          <Route path='/home' component={HomePage} />
         </Switch>
       </div>
     );

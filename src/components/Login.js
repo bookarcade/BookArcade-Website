@@ -11,6 +11,7 @@ class NormalLoginForm extends React.Component {
   constructor(props) {
     super(props);
     const { fetchUser } = this.props;
+    //Action creator to fetch User data and store it in Redux Store
     fetchUser();
     console.log("Cnst" + this.props.auth.user);
   }
@@ -21,34 +22,11 @@ class NormalLoginForm extends React.Component {
         const { userLogin } = this.props;
         console.log("Received values of form: ", values);
         userLogin(values.userName, values.password);
-
-        // authRef
-        //   .signInWithEmailAndPassword(values.userName, values.password)
-        //   .then(user => {
-        //     console.log("user:" + user);
-        //     console.log(authRef.currentUser.email);
-        //     db.collection("books")
-        //       .get()
-        //       .then(snapshot => {
-        //         snapshot.forEach(doc => {
-        //           console.log(doc.id, "=>", doc.data().name);
-        //         });
-        //       })
-        //       .catch(error => {
-        //         console.log(error);
-        //       });
-        //   })
-        //   .catch(function(error) {
-        //     // Handle Errors here.
-        //     var errorCode = error.code;
-        //     var errorMessage = error.message;
-        //     console.log(errorCode + errorMessage);
-        //     // ...
-        //   });
       }
     });
   };
 
+  //If the user is not signed in, redirect to Dashboard
   redirectToDashBoard = () => {
     if (this.props.auth.user !== null) {
       return <Redirect to="/" />;
