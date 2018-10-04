@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import * as actions from "../actions";
 import { Redirect } from "react-router-dom";
 import { authRef, db } from "../config/firebase";
+import Loader from "react-loaders";
+import Logo from "../assets/logo-m.png";
 
 const FormItem = Form.Item;
 
@@ -14,6 +16,9 @@ class NormalLoginForm extends React.Component {
     //Action creator to fetch User data and store it in Redux Store
     fetchUser();
     console.log("Cnst" + this.props.auth.user);
+    this.state = {
+      loading: false
+    };
   }
   handleSubmit = e => {
     e.preventDefault();
@@ -27,13 +32,16 @@ class NormalLoginForm extends React.Component {
     });
   };
 
+  enterLoading = () => {
+    this.setState({ loading: true });
+  };
+
   //If the user is not signed in, redirect to Dashboard
   redirectToDashBoard = () => {
     if (this.props.auth.user !== null) {
       return <Redirect to="/" />;
-    }
-    else {
-      return <Redirect to='/login' />
+    } else {
+      return <Redirect to="/login" />;
     }
   };
 
@@ -43,19 +51,19 @@ class NormalLoginForm extends React.Component {
       return (
         <div className="container" align="center">
           {this.redirectToDashBoard()}
-          <h1>Fetching</h1>
         </div>
       );
     } else if (this.props.auth.isLoading === true) {
       return (
-        <div className="container" align="center">
-          <h1>Fetching</h1>
+        <div className="loading-container">
+          <Loader type="pacman" />
         </div>
       );
     } else
       return (
         <Row className="row-form" type="flex" align="middle">
           <div align="center" className="container-fluid">
+            <img src={Logo} />
             <h1>Login</h1>
             <Form onSubmit={this.handleSubmit} className="login-form">
               <FormItem>
@@ -93,14 +101,20 @@ class NormalLoginForm extends React.Component {
                   initialValue: true
                 })(<Checkbox>Remember me</Checkbox>)}
                 <a className="login-form-forgot" href="">
-                  Forgot password
+                  Forgot password?
                 </a>
                 <Button
                   type="primary"
                   htmlType="submit"
                   className="login-form-button"
+                  loading={this.state.loading}
+                  onClick={this.enterLoading}
                 >
-                  Log in
+                  {this.state.loading ? (
+                    <span>Logging in</span>
+                  ) : (
+                    <span>Log in</span>
+                  )}
                 </Button>
               </FormItem>
             </Form>

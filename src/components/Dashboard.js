@@ -3,6 +3,7 @@ import { Layout, Menu, Breadcrumb, Icon } from "antd";
 import * as actions from "../actions";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
+import Logo from "../assets/logo.png";
 
 const { SubMenu } = Menu;
 const { Header, Content, Footer, Sider } = Layout;
@@ -48,7 +49,10 @@ class Dashboard extends Component {
             left: 0
           }}
         >
-          <div className="logo" />
+          <div className="logo-container">
+            <img src={Logo} />
+            {!this.state.collapsed && <span>BookArcade</span>}
+          </div>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={["1"]}>
             <Menu.Item key="1">
               <Icon type="user" />
@@ -71,7 +75,6 @@ class Dashboard extends Component {
         >
           <Header
             style={{
-              background: "#fff",
               padding: 0,
               zIndex: 1,
               width: "100%"
