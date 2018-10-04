@@ -23,3 +23,10 @@
   }
 
 
+  .ant-menu.ant-menu-dark .ant-menu-item-selected, .ant-menu-submenu-popup.ant-menu-dark .ant-menu-item-selected{
+    background-color: $site-orange
+  }
+
+  .trigger:hover{
+    color: $site-orange;
+  }

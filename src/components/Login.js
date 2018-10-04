@@ -21,6 +21,7 @@ class NormalLoginForm extends React.Component {
       if (!err) {
         const { userLogin } = this.props;
         console.log("Received values of form: ", values);
+        //Login with username and password
         userLogin(values.userName, values.password);
       }
     });
@@ -30,6 +31,9 @@ class NormalLoginForm extends React.Component {
   redirectToDashBoard = () => {
     if (this.props.auth.user !== null) {
       return <Redirect to="/" />;
+    }
+    else {
+      return <Redirect to='/login' />
     }
   };
 
