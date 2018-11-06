@@ -3,7 +3,6 @@ import { Form, Icon, Input, Button, Checkbox, Row } from "antd";
 import { connect } from "react-redux";
 import * as actions from "../actions";
 import { Redirect } from "react-router-dom";
-import { authRef, db } from "../config/firebase";
 import Loader from "react-loaders";
 import Logo from "../assets/logo-m.png";
 

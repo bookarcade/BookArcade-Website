@@ -1,6 +1,7 @@
 import { FETCH_USER } from "./types";
 import { authRef } from "../config/firebase";
 
+// Fetch User Login Data
 export const fetchUser = () => async dispatch => {
   console.log("Fetch Executed");
   authRef.onAuthStateChanged(user => {
@@ -11,12 +12,14 @@ export const fetchUser = () => async dispatch => {
   });
 };
 
+//User Logout
 export const userLogout = () => async dispatch => {
   authRef.signOut().then(() => {
     fetchUser();
   });
 };
 
+//User Login
 export const userLogin = (email, password) => async dispatch => {
   console.log("Login Function");
   authRef

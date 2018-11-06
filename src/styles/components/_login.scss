@@ -1,4 +1,4 @@
-$primary-color: $my-brand-color;
+$primary-color: $site-orange;
 @import 'loaders.css/src/animations/pacman.scss';
 
 .loader-hidden {
@@ -11,7 +11,8 @@ $primary-color: $my-brand-color;
   height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center
+  align-items: center;
+  background-color: $my-brand-color
 }
 
 .login-form {

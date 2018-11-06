@@ -33,7 +33,8 @@
 
   .logo-container {
     padding: 2px;
-    margin: 2px
+    margin: 5px 2px;
+    margin-top: 6px
   }
 
   .logo-container > span {
@@ -43,6 +44,6 @@
   }
 
   .ant-layout-header {
-    background-color: #001529 !important;
+    background-color: $my-brand-color !important;
     color: white
   }
