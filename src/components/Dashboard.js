@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import Logo from "../assets/logo.png";
 import TableList from "./TableList";
-import HomePage from "./HomePage";
+// import HomePage from "./HomePage";
 
 const { Header, Content, Sider } = Layout;
 
@@ -115,11 +115,7 @@ class Dashboard extends Component {
               overflow: "initial"
             }}
           >
-            {this.state.key === "1" ? (
-              <HomePage />
-            ) : (
               <TableList key={this.state.key} />
-            )}
           </Content>
         </Layout>
       </Layout>
